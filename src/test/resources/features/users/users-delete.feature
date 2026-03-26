@@ -31,3 +31,9 @@ Feature: DELETE usuarios
     When method get
     Then status 400
     And match response.message == 'Usuário não encontrado'
+
+  Scenario: Eliminar usuario inexistente
+    Given url baseUrl
+    And path 'usuarios', '1234567890abcdef'
+    When method delete
+    Then status 200

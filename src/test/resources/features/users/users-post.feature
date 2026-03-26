@@ -55,3 +55,11 @@ Feature: POST usuarios
     When method post
     Then status 400
     And match response.message == 'Este email já está sendo usado'
+
+
+  Scenario: No permitir registrar usuario sin email
+    Given url baseUrl
+    And path 'usuarios'
+    And request { nome: 'Test', password: '1234', administrador: 'true' }
+    When method post
+    Then status 400

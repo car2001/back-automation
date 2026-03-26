@@ -45,3 +45,16 @@ Feature: GET usuario por id
     Then status 400
     * print response
     And match response.id contains '16 caracteres'
+
+
+  Scenario: ID con menos de 16 caracteres
+    Given url baseUrl
+    And path 'usuarios', '12345'
+    When method get
+    Then status 400
+
+  Scenario: ID con más de 16 caracteres
+    Given url baseUrl
+    And path 'usuarios', '12345678901234567'
+    When method get
+    Then status 400
